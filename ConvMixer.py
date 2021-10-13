@@ -25,7 +25,7 @@ class ConvMixer(nn.Module):
     def forward(self , x):
         x = self.bn(F.gelu(self.cnn1(x)))
         for i in range(self.d):
-          x = self.bn1(F.gelu(self.cnn2(x)))+ x #residual step and deptwise convolution
+          x = self.bn1(F.gelu(self.cnn2(x)))+ x #residual step and depthwise convolution
           x = self.bn2(F.gelu(self.cnn3(x))) #pointwise convolution
         x = self.pool(x)
         x = x.view(x.shape[0],-1)
